@@ -3,12 +3,39 @@
     font-size: 16px;
 }
 body{
-    background-color:#ffc6c6;
+    background-image: url("../img/5e.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 main{
     background-color: antiquewhite;
-    width: 500px;
-    margin:auto;
+    width: 1000px;
+    margin: auto;
     padding: 10px;
     box-shadow: 3px 3px 5px burlywood;
 }
+#menu {
+    margin: 0;
+    overflow: hidden;
+    list-style: none;
+    background-color: rgb(255, 216, 156);
+     padding: 50px;
+    font-size: 50px;
+    align-items: center;
+      display: flex;
+      justify-content: flex-end;
+}
+
+#menu li a {
+    text-decoration: none;
+    color: rgb(27, 26, 26);
+    margin: 0 20px;
+    
+}
+
+#menu li a.active {
+    color: brown;
+    font-weight: bold;
+    border-bottom: 2px solid brown; 
+   }
