@@ -7,6 +7,8 @@ body{
     background-image: url("../img/5e.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    margin: 0;
+    padding: 0;
 }
 
 main{
@@ -20,11 +22,11 @@ main{
     overflow: hidden;
     list-style: none;
     background-color: rgb(255, 216, 156);
-     padding: 50px;
-    font-size: 50px;
+     padding: 20px;
+    font-size: 1.5em;
     align-items: center;
-      display: flex;
-      justify-content: flex-end;
+    display: flex;
+    align-items: center;
 }
 
 #menu li a {
@@ -39,26 +41,34 @@ main{
     font-weight: bold;
     border-bottom: 2px solid brown; 
 }
-
-.p, h2{
-  width: auto;
-  height: auto;
+#menu .right {
+    margin-left: auto;
 }
-
-.lado{
- float: right;
- text-align: right;
- width: 20px;
- height: 20px;
- justify-items: center;
- justify-content: flex-end;
- align-content: flex-end;
-}
-
 footer {
-    text-align: left;
-    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
     background-color: #594100;
     color: #fff;
-    margin-top: 40px
+    margin-top: 40px;
+    font-size: 20px;
 }
+
+.contatos {
+    display: flex;
+    gap: 30px; 
+    align-items: center;
+}
+
+footer .lado {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+footer .img {
+    width: 22px;
+    height: auto;
+}
+
