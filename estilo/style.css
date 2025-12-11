@@ -1,6 +1,7 @@
 *{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    width: auto;
+    height: auto;
 }
 body{
     background-image: url("../img/5e.jpg");
@@ -37,19 +38,27 @@ main{
     color: brown;
     font-weight: bold;
     border-bottom: 2px solid brown; 
-   }
+}
 
-img.lado{
+.p, h2{
+  width: auto;
+  height: auto;
+}
+
+.lado{
  float: right;
  text-align: right;
  width: 20px;
  height: 20px;
+ justify-items: center;
+ justify-content: flex-end;
+ align-content: flex-end;
 }
 
 footer {
     text-align: left;
     padding: 20px;
-    background-color: #2c3e50;
+    background-color: #594100;
     color: #fff;
     margin-top: 40px
 }
