@@ -4,7 +4,6 @@
     height: auto;
 }
 body{
-    background-image: url("../img/5e.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
@@ -30,6 +29,11 @@ main{
     
     
 }
+#menu img {
+    width: 45px;       
+    height: auto;     
+    margin-right: 15px;   
+}
 
 #menu li a {
     text-decoration: none;
@@ -46,6 +50,10 @@ main{
 #menu .right {
     margin-left: auto;
 }
+
+
+
+
 footer {
     display: flex;
     justify-content: space-between;

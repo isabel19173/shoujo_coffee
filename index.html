@@ -4,28 +4,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoujo_coffee</title>
     <link rel="stylesheet" href="./estilo/style.css">
+    <style>
+       .container-fotos {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    justify-content: center;
+}
+       .coluna-esquerda {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+} 
+       .foto-h {
+    width: 450px;
+    height: 250px;
+    object-fit: cover; 
+    border-radius: 20px;
+}
+       .foto-v {
+    width: 350px;
+    height: 520px; 
+    object-fit: cover;
+    border-radius: 20px;
+}
+    </style>
 </head>
 <body>
 <main>
     <header>
     <ul id="menu">
-    <li ><a href="./index.html"><img src="../shoujo_coffee/img/cappuccino.png"></a></li> 
+    <li ><a href="./index.html"><img src="img/cappuccino.png" width="20" height="20"></a></li> 
     <li><a href="./sobrenos.html"> Sobre nós</a></li>    
       <li ><a href="./cardapio.html" >Cardapio</a></li>
      <li ><a href="./contato.html" >Contato</a></li>
      <li ><a href= "./endereco.html">Endereço</a></li>
-     <li class="right"> <a href="./shop.html" > Compras</a></li>
+     <li class="right"> <a href="./shop.html" ><img src="img/shopping-bag.png" width="20" height="20"> Compras</a></li>
      
     </li>
    </ul>
-    <article>
-        <img src="../shoujo_coffee/img/place1.jpg" width="500" height="333">
-    </article>
+    <main class="container-fotos">
+    <div class="coluna-esquerda">
+        <img src="img/place1.jpg" class="foto-h">
+        <img src="img/food.jpg" class="foto-h">
+    </div>
 
-    <article>
-        <h2>animes</h2>
-        <p>Texto artigo</p>
-    </article>
+    <div class="coluna-direita">
+        <img src="img/place3.jpg" class="foto-v">
+    </div>
+</main>
+
 
 </main>
  <footer >
