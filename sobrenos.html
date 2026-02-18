@@ -6,8 +6,66 @@
     <link rel="stylesheet" href="./estilo/style.css">
     <style>
         article{
-            margin-left: 50px
+            align-content: center;
+            text-align: center;
+            font-style:unset;
+            font-size: larger;
         }
+        
+.header-cerejeira {
+    display: flex;
+    align-items: center;
+    position: relative; /* Permite controle de posicionamento */
+    padding: 20px;
+}
+
+.img-logo-principal {
+    width: 700px;
+    margin: 0 auto; /* O segredo: margens automáticas nas laterais centralizam o elemento */
+}
+
+.img-menina {
+    width: 170px;
+    /* Se quiser que ela não "empurre" a logo, pode usar: */
+    position: absolute; 
+    left: 50px;
+}
+.container-historia {
+    display: flex;
+    align-items: flex-start; /* Alinha o texto pelo topo da imagem */
+    gap: 30px;
+    padding: 40px;
+    font-size: large;
+    font-style:oblique;
+}
+
+.bloco-imagem-vertical img {
+    width:500px; /* Largura para parecer um retângulo em pé */
+    height: 200px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.emoji {
+    font-size: 1.2em;
+    margin-right: 5px;
+}
+
+.container-historia inverter{
+     flex-direction: row-reverse;
+     font-size: large;
+     font-style: oblique;
+}
+.bloco-imagem-vertical--esq img {
+    object-fit: cover;
+    border-radius: 20px;
+    width: 250px;
+    height: 200px;
+    border-radius: 15px;
+}
+  
+
+    
     </style>
 </head>
 <body>
@@ -19,36 +77,44 @@
       <li ><a href="./cardapio.html" >Cardapio</a></li>
      <li ><a href="./contato.html" >Contato</a></li>
      <li ><a href= "./endereco.html">Endereço</a></li>
-     <li class="right"> <a href="./shop.html" > Compras</a></li>
+     <li class="right"> <a href="./shop.html" ><img src="img/shopping-bag.png" width="20" height="20"> Compras</a></li>
      
     </li>
    </ul>
-    <article>
-        <h2>cafes</h2>
-        <p>Texto artigo</p>
-    </article>
+
+    <div class="header-cerejeira">
+    <img src="img/cosplayer.png" class="img-menina">
+    <img src="img/llogo.png" class="img-logo-principal">
+</div>
+
+  <section class="container-historia">
+    <div class="bloco-imagem-vertical">
+        <img src="img/coffe2.jpg" alt="Espaço Café">
+    </div>
+
+    <div class="bloco-texto">
+        <h2>
+            <span class="emoji">🌸</span> Nossa História
+        </h2>
+         <p>Nascemos do encanto de partilhar a tradição japonesa, onde o tempo é respeitado e a simplicidade gera harmonia.<br> Inspirados pela delicadeza do shoujo anime, unimos uma arquitetura minimalista e futurista para criar um refúgio que desperta os sentidos.<br> Queremos que cada visita seja uma cena de romance sob as flores de cerejeira, onde cada fragrância é poesia e cada sabor é um suspiro de calma. </p>    
+    </div>
+</section>
+
+
+ <section class="container-historia inverter">
+    <div class="bloco-texto">
+        <p><span class="emoji">☕</span>Em nossa busca pela qualidade, selecionamos apenas cafés especiais brasileiros com pontuação acima de 82, vindos das melhores regiões produtoras. O resultado é um aroma e sabor excepcionais em cada xícara. Para os chás, a pureza é fundamental: usamos ingredientes 100% naturais e frutas frescas, sem adição de corantes, conservantes ou aditivos. Oferecemos um equilíbrio perfeito para a sua pausa suave.</p>
+    </div>
+    <div class="bloco-imagem-vertical--esq">
+        <img src="img/coffe3.jpg" alt="coffee-mitsumi">
+    </div>
+</section>             
 
     <article>
-        <h2>animes</h2>
-        <p>Texto artigo</p>
-    </article>
-    <article>
-        <h2>cafes</h2>
-        <p>Texto artigo</p>
-    </article>
+        <p>Venha Viver o Romance.</p>
+        <p> Descubra o nosso espaço e experimente a poesia de cada xícara.</p>
+        <p>Veja nosso Menu Completo.</p>
 
-    <article>
-        <h2>animes</h2>
-        <p>Texto artigo</p>
-    </article>
-    <article>
-        <h2>cafes</h2>
-        <p>Texto artigo</p>
-    </article>
-
-    <article>
-        <h2>animes</h2>
-        <p>Texto artigo</p>
     </article>
 
 </main>
