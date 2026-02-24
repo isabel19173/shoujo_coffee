@@ -4,6 +4,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shoujo_coffee</title>
     <link rel="stylesheet" href="./estilo/style.css">
+    <link rel="icon" type="image/png" href="img/cafe.png">
+    <style>
+        article{
+            align-items: center;
+            text-align: center;
+        }
+         h2{
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        p{
+            font-size: 25px;
+            margin-top: 10px ;
+        }
+        h3{
+            border-radius: 5px;
+            border-style: solid;
+        }
+        /* Ajuste no container principal */
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha se não couber */
+    justify-content: center; /* Centraliza o grupo */
+    gap: 30px; /* Espaço entre cada bloco de contato */
+    margin-top: 40px;
+    padding: 20px;
+}
+
+/* Ajuste individual de cada par Ícone + Texto */
+.item-contato {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre o ícone e o texto */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.item-contato img {
+    width: 35px; /* Tamanho controlado dos ícones */
+    height: auto;
+}
+
+/* Ajuste da borda do "Envie sua mensagem" */
+h3 {
+    display: inline-block; /* Faz a borda envolver apenas o texto */
+    padding: 10px 40px;
+    border: 2px solid #644A07;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+    </style>
 </head>
 <body>
 <main>
@@ -11,7 +62,7 @@
     <ul id="menu">
     <li ><a href="./index.html"><img src="img/cappuccino.png" width="20" height="20"></a></li> 
     <li><a href="./sobrenos.html" > Sobre nós</a></li>    
-      <li ><a href="./cardapio.html" >Cardapio</a></li>
+      <li ><a href="./cardapio.html" >Cardápio</a></li>
      <li ><a href="./contato.html"class="active" >Contato</a></li>
      <li ><a href= "./endereco.html">Endereço</a></li>
     <li class="right"> <a href="./shop.html" ><img src="img/shopping-bag.png" width="20" height="20"> Compras</a></li>
@@ -20,27 +71,42 @@
      </li>
    </ul>
     <article>
-        <h2>cafes</h2>
-        <p>Texto artigo</p>
+        <h2>O que podemos fazer por você?</h2>
+        <p>Nós adoramos ouvir de você! 💖<br>
+        Compartilhe suas ideias, sugestões ou histórias conosco.<br>Cada mensagem é um presente para nós! </p>
+        <h3>Envie sua mensagem :</h3>
     </article>
+<div class="container">
+    <div class="item-contato">
+        <img src="./img/instagram.png" class="img">
+        <span>@shoujo.coffee</span>
+    </div>
+    <div class="item-contato">
+        <img src="./img/social.png" class="img">
+        <span>+55 47 99874-2356</span>
+    </div>
+    <div class="item-contato">
+        <img src="img/email.png" class="img">
+        <span>shoujo.coffee@gmail.com</span>
+    </div>
+</div>
 
     <article>
-        <h2>animes</h2>
-        <p>Texto artigo</p>
+        <p>Acreditamos que pessoas transformam o que tocam.<br>Se você se identifica com o nosso propósito, venha somar o seu talento conosco.</p>
     </article>
 </main>
 <footer >
-        <p> This cover has been designed using resources from Flaticon.com em 2025</p> 
+        <small> This cover has been designed using resources from Flaticon.com em 2025</small> 
          <div class="contatos">
-        <p class="lado">
+        <small class="lado">
             @shoujo.coffee
             <img src="./img/instagram.png" class="img">
-        </p>
+        </small>
 
-        <p class="lado">
+        <small class="lado">
             +55 47 99874-2356
             <img src="./img/social.png" class="img">
-        </p>
+        </small>
     </div>
 </footer>  
 </body>
