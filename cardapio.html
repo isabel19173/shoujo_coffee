@@ -6,8 +6,45 @@
     <link rel="stylesheet" href="./estilo/style.css">
     <link rel="icon" type="image/png" href="img/cafe.png">
     <style>
+        article{
+            margin-left: 50px;
+            font-family: 'Comic Sans MS', cursive;
+        }
+.cardapio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
+    gap: 30px;
+    padding: 40px; 
+}
+.container-coffes {
+    display: flex; 
+    align-items: flex-start;
+    gap: 20px;
+    padding: 15px;
+    transition: transform 0.3s ease; 
+}
+
+.container-coffes:hover {
+    transform: scale(1.03); 
+}
+        .imagens-coffes img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        .descricao-coffes h3 {
+            margin: 0;
+            color: #5d4037;
+        }
+        .price {
+            font-weight: bold;
+            color: #e91e63;
+        }
+    
         
-    </style>
+</style>
 </head>
 <body>
 <main>
@@ -26,8 +63,105 @@
    </ul>
     <article>
         <h1>Cafés</h1>
-        <h3>Cafés Quentes</h3>
-    </article>   
+        <h2>Cafés Quentes</h2>
+    </article> 
+<div class="cardapio-grid">
+    <section class="container-coffes">
+    <div class="imagens-coffes">
+        <img src="img/we-coffee-cafe-americano-151b97b4.png" alt="Café Americano">
+    </div>
+    <div class="descricao-coffes">
+        <h3>AMERICANO</h3>
+        <p class="price">R$ 10,00</p>
+        <p>Espresso duplo suavizado com água. 380ml</p>
+    </div>
+    </section>
+    <section class="container-coffes">
+     <div class="imagens-coffes">
+        <img src="img/we-coffee-cafe-capu_webp.png">
+    </div>
+    <div class="descricao-coffes">
+        <h3>CAPPUCCINO</h3>
+        <p class="price">R$ 19.90</p>
+        <p>Bebida à base de espresso e leite vaporizado. Cremosa e com toque de canela. 330ml</p>
+    </div>
+</section>
+<section class="container-coffes">
+    <div class="imagens-coffes">
+        <img src="img/we-coffee-cafe-caramelo-macciatto-quente-d5390407.png">
+    </div>
+   <div class="descricao-coffes">
+        <h3>CARAMELO MACCHIATO</h3>
+        <p class="price">R$ 22.90</p>
+        <p>Espresso, leite vaporizado e calda de caramelo. 380ml</p>
+    </div>
+</section>
+<section class="container-coffes">
+    <div class="imagens-coffes">
+        <img src="img/we-coffee-cafe-latte.png">
+    </div>
+    <div class="descricao-coffes">
+        <h3>LATTE</h3>
+        <p class="price">R$ 18.90</p>
+        <p>Espresso e leite vaporizado. Sabor do café mais suave. 380ml</p>
+    </div>
+</section>
+<section class="container-coffes">
+    <div class="imagens-coffes">
+        <img src="img/we-coffee-coffee-espresso-simples.png">
+    </div>
+    <div class="descricao-coffes">
+        <h3>ESPRESSO SIMPLES</h3>
+        <p class="price">R$ 6.90</p>
+        <p>Café espresso potente e encorpado. 40ml</p>
+    </div>
+</section>
+<section class="container-coffes">
+    <div class="imagens-coffes">
+        <img src="img/we-coffee-coffee-espresso-duplo.png">
+    </div>
+    <div class="descricao-coffes">
+        <h3>ESPRESSO DUPLO</h3>
+        <p class="price">R$ 9.90</p>
+        <p>Café espresso potente e encorpado. 80ml</p>
+    </div>
+</section>
+<section class="container-coffes">
+    <div class="imagens-coffes">
+        <img src="img/we-coffee-cafe-hotaveia.png">
+    </div>
+    <div class="descricao-coffes">
+        <h3>HOT LATTE AVEIA</h3>
+        <p class="price">R$ 21.00</p>
+        <p>Bebida quente à base de espresso e leite de aveia vaporizado. 330ml</p>
+    </div>
+</section>
+<section class="container-coffes">
+    <div class="imagens-coffes">
+        <img src="img/we-coffee-cafe-mocha.png">
+    </div>
+    <div class="descricao-coffes">
+        <h3>MOCHA</h3>
+        <p class="price">R$ 21.90</p>
+        <p>Espresso, leite vaporizado, ganache de chocolate e cacau em pó. 330ml</p>
+    </div>
+</section>
+</div>
+<article>
+        <h2>Doces</h2>
+</article>
+<div class="cardapio-grid"> 
+    <section class="container-coffes">
+        <div class="imagens-coffes">
+            <img src="img/we-coffee-coffee-pistachio-bun-fc9a1afe.webp">
+        </div>
+        <div class="descricao-coffes">
+            <h3>CINNAMON BUN</h3>
+             <p class="price">R$ 17.90</p>
+             <p>Massa soft com canela, com cobertura de caramelo salgado , creme dechocolate com avelã, nozes caramelizadas e crispearls de chocolate.</p>
+        </div>
+        </section>
+</div>
 </main>
 <footer >
         <p> This cover has been designed using resources from Flaticon.com em 2025</p> 
