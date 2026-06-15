@@ -6,56 +6,51 @@
     <link rel="stylesheet" href="./estilo/style.css">
     <link rel="icon" type="image/png" href="img/cappuccino.png">
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=swap');
 
-.header-titulo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin: 40px 0;
-}
-
-.header-titulo h1 {
-    font-family: 'Fredoka', sans-serif;
-    font-weight: 700;
-    font-size: 56px;
-    color: #43332D; 
-    margin: 0;
-}
-.header-titulo::before, .header-titulo::after {
-    content: "🌸🍃🌸🍃"; 
-    font-size: 35px;
-    letter-spacing: -5px;
-    opacity: 0.6;
-}
-.start h2 {
-    font-family:'Comic Sans MS', cursive;
-    color: #43332D;
-    border-bottom: 2px solid #f8bbd0; 
-    display: inline-block;
-    padding-bottom: 5px;
-    font-size: 45px;
-    margin-left:50px;
-}
-
-.cardapio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
-    gap: 30px;
-    padding: 40px; 
-}
-.container-coffes {
-    display: flex; 
-    align-items: flex-start;
-    gap: 20px;
-    padding: 15px;
-    transition: transform 0.3s ease; 
-}
-
-.container-coffes:hover {
-    transform: scale(1.03); 
-}
+        .header-titulo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .header-titulo h1 {
+            font-family: 'Comic Sans MS', sans-serif;
+            font-weight: 700;
+            font-size: 56px;
+            color: #43332D;
+            margin: 0;
+        }
+        .header-titulo::before, .header-titulo::after {
+            content: "🌸🍃🌸🍃";
+            font-size: 35px;
+            letter-spacing: -5px;
+            opacity: 0.6;
+        }
+        .start h2 {
+            font-family: 'Comic Sans MS', cursive;
+            color: #43332D;
+            border-bottom: 2px solid #f8bbd0;
+            display: inline-block;
+            padding-bottom: 5px;
+            font-size: 45px;
+            margin-left: 50px;
+        }
+        .cardapio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+        .container-coffes {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+        .container-coffes:hover { transform: scale(1.03); }
         .imagens-coffes img {
             width: 120px;
             height: 120px;
@@ -63,319 +58,388 @@
             border-radius: 15px;
             box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
         }
-        .descricao-coffes h3 {
-            margin: 0;
+        .descricao-coffes h3, .descricao-doces h3, .descricao-sal h3 {
+            margin: 0 0 6px;
             color: #5d4037;
         }
-        
         .price {
             font-weight: bold;
             color: #e91e63;
         }
-    
-        
-</style>
+        .add-btn {
+            margin-top: 8px;
+            padding: 7px 16px;
+            background: #e91e63;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .add-btn:hover { background: #c2185b; transform: scale(1.03); }
+        .add-btn.adicionado { background: #4caf50; }
+
+        /* toast de confirmação */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #43332D;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 999;
+            font-family: 'Comic Sans MS', cursive;
+        }
+        .toast.show { opacity: 1; }
+    </style>
 </head>
 <body>
 <main>
     <header>
-    <ul id="menu">
-     <li ><a href="./index.html"><img src="img/cappuccino.png" width="20" height="20"></a></li> 
-    <li><a href="./sobrenos.html" > Sobre nós</a></li>    
-      <li ><a href="./cardapio.html" class="active" >Cardápio</a></li>
-     <li ><a href="./contato.html" >Contato</a></li>
-     <li ><a href= "./address.html">Endereço</a></li> 
-     <li class="right"> <a href="./shop.html" ><img src="img/shopping-bag.png" width="20" height="20"> Compras</a></li>
-     </li>
-   </ul>
+        <ul id="menu">
+            <li><a href="./index.html"><img src="img/cappuccino.png" width="20" height="20"></a></li>
+            <li><a href="./sobrenos.html">Sobre nós</a></li>
+            <li><a href="./cardapio.html" class="active">Cardápio</a></li>
+            <li><a href="./contato.html">Contato</a></li>
+            <li><a href="./address.html">Endereço</a></li>
+            <li class="right">
+                <a href="./shop.html">
+                    <img src="img/shopping-bag.png" width="20" height="20"> Compras
+                    <span id="cart-badge" style="display:none; background:#fff; color:#e91e63;
+                        font-size:11px; font-weight:700; border-radius:10px;
+                        padding:1px 6px; margin-left:2px;">0</span>
+                </a>
+            </li>
+        </ul>
     </header>
-<div class="header-titulo">
+
+    <div class="header-titulo">
         <h1>Cardápio</h1>
-</div>
-
-
-    <div class="start">
-        <h2>Cafés Quentes ☕</h2>
     </div>
 
-<div class="cardapio-grid">
-    <section class="container-coffes">
-    <a href="./produto-detalhe.html" class="link-produto">
-    <div class="imagens-coffes">
-        <img src="img/we-coffee-cafe-americano-151b97b4.png" alt="Café Americano">
+    <!-- CAFÉS QUENTES -->
+    <div class="start"><h2>Cafés Quentes ☕</h2></div>
+    <div class="cardapio-grid">
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-cafe-americano-151b97b4.png" alt="Americano"></div>
+            <div class="descricao-coffes">
+                <h3>AMERICANO</h3>
+                <p class="price">R$ 10,00</p>
+                <p>Espresso duplo suavizado com água. 380ml</p>
+                <button class="add-btn" onclick="addCart('Americano', 10.00, 'img/we-coffee-cafe-americano-151b97b4.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-cafe-capu_webp.png" alt="Cappuccino"></div>
+            <div class="descricao-coffes">
+                <h3>CAPPUCCINO</h3>
+                <p class="price">R$ 19,90</p>
+                <p>Bebida à base de espresso e leite vaporizado. Cremosa e com toque de canela. 330ml</p>
+                <button class="add-btn" onclick="addCart('Cappuccino', 19.90, 'img/we-coffee-cafe-capu_webp.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-cafe-caramelo-macciatto-quente-d5390407.png" alt="Caramelo Macchiato"></div>
+            <div class="descricao-coffes">
+                <h3>CARAMELO MACCHIATO</h3>
+                <p class="price">R$ 22,90</p>
+                <p>Espresso, leite vaporizado e calda de caramelo. 380ml</p>
+                <button class="add-btn" onclick="addCart('Caramelo Macchiato', 22.90, 'img/we-coffee-cafe-caramelo-macciatto-quente-d5390407.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-cafe-latte.png" alt="Latte"></div>
+            <div class="descricao-coffes">
+                <h3>LATTE</h3>
+                <p class="price">R$ 18,90</p>
+                <p>Espresso e leite vaporizado. Sabor do café mais suave. 380ml</p>
+                <button class="add-btn" onclick="addCart('Latte', 18.90, 'img/we-coffee-cafe-latte.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-coffee-espresso-simples.png" alt="Espresso Simples"></div>
+            <div class="descricao-coffes">
+                <h3>ESPRESSO SIMPLES</h3>
+                <p class="price">R$ 6,90</p>
+                <p>Café espresso potente e encorpado. 40ml</p>
+                <button class="add-btn" onclick="addCart('Espresso Simples', 6.90, 'img/we-coffee-coffee-espresso-simples.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-coffee-espresso-duplo.png" alt="Espresso Duplo"></div>
+            <div class="descricao-coffes">
+                <h3>ESPRESSO DUPLO</h3>
+                <p class="price">R$ 9,90</p>
+                <p>Café espresso potente e encorpado. 80ml</p>
+                <button class="add-btn" onclick="addCart('Espresso Duplo', 9.90, 'img/we-coffee-coffee-espresso-duplo.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-cafe-hotaveia.png" alt="Hot Latte Aveia"></div>
+            <div class="descricao-coffes">
+                <h3>HOT LATTE AVEIA</h3>
+                <p class="price">R$ 21,00</p>
+                <p>Bebida quente à base de espresso e leite de aveia vaporizado. 330ml</p>
+                <button class="add-btn" onclick="addCart('Hot Latte Aveia', 21.00, 'img/we-coffee-cafe-hotaveia.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-cafe-mocha.png" alt="Mocha"></div>
+            <div class="descricao-coffes">
+                <h3>MOCHA</h3>
+                <p class="price">R$ 21,90</p>
+                <p>Espresso, leite vaporizado, ganache de chocolate e cacau em pó. 330ml</p>
+                <button class="add-btn" onclick="addCart('Mocha', 21.90, 'img/we-coffee-cafe-mocha.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/havaino.png" alt="Café Havaino"></div>
+            <div class="descricao-coffes">
+                <h3>CAFÉ HAVAINO</h3>
+                <p class="price">R$ 21,90</p>
+                <p>Café com leite zero e leite de coco, recheado no volta por açúcar mascavo. 330ml</p>
+                <button class="add-btn" onclick="addCart('Café Havaino', 21.90, 'img/havaino.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
     </div>
-    </a>
-    <div class="descricao-coffes">
-        <h3>AMERICANO</h3>
-        <p class="price">R$ 10,00</p>
-        <p>Espresso duplo suavizado com água. 380ml</p>
+
+    <!-- DOCES -->
+    <div class="start"><h2>Doces 🍰</h2></div>
+    <div class="cardapio-grid">
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-coffee-pistachio-bun-fc9a1afe.webp" alt="Cinnamon Bun"></div>
+            <div class="descricao-doces">
+                <h3>CINNAMON BUN</h3>
+                <p class="price">R$ 17,90</p>
+                <p>Massa soft com canela, cobertura de caramelo salgado, creme de chocolate com avelã, nozes caramelizadas e crispearls.</p>
+                <button class="add-btn" onclick="addCart('Cinnamon Bun', 17.90, 'img/we-coffee-coffee-pistachio-bun-fc9a1afe.webp', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-croissant-choco-amendoas-d2202970.webp" alt="Croissant Chocolate"></div>
+            <div class="descricao-doces">
+                <h3>CROISSANT DE CHOCOLATE E AMÊNDOAS</h3>
+                <p class="price">R$ 22,90</p>
+                <p>Recheado com creme de chocolate e amêndoas, coberto com amêndoas laminadas.</p>
+                <button class="add-btn" onclick="addCart('Croissant Chocolate', 22.90, 'img/we-coffee-croissant-choco-amendoas-d2202970.webp', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/download-removebg-preview.png" alt="Bolo de Cenoura"></div>
+            <div class="descricao-doces">
+                <h3>BOLO DE CENOURA</h3>
+                <p class="price">R$ 13,90</p>
+                <p>Bolo de cenoura coberto por ganache de chocolate meio amargo.</p>
+                <button class="add-btn" onclick="addCart('Bolo de Cenoura', 13.90, 'img/download-removebg-preview.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/cheesecake.png" alt="Cheesecake"></div>
+            <div class="descricao-doces">
+                <h3>CHEESECAKE</h3>
+                <p class="price">R$ 13,90</p>
+                <p>Base de biscoito com recheio suave de queijo, coberto com geleia de frutas vermelhas.</p>
+                <button class="add-btn" onclick="addCart('Cheesecake', 13.90, 'img/cheesecake.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/belem.jpg" alt="Pastel de Belém"></div>
+            <div class="descricao-doces">
+                <h3>PASTEL DE BELÉM</h3>
+                <p class="price">R$ 10,00</p>
+                <p>Massa folhada leve e recheio cremoso caramelizado.</p>
+                <button class="add-btn" onclick="addCart('Pastel de Belém', 10.00, 'img/belem.jpg', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/beowein.png" alt="Brownie Frutas Vermelhas"></div>
+            <div class="descricao-doces">
+                <h3>BROWNIE FRUTAS VERMELHAS</h3>
+                <p class="price">R$ 18,00</p>
+                <p>Brownie de chocolate branco com calda de frutas vermelhas, sorvete de creme e leite Ninho®.</p>
+                <button class="add-btn" onclick="addCart('Brownie Frutas Vermelhas', 18.00, 'img/beowein.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/LIMA.png" alt="Torta de Limão"></div>
+            <div class="descricao-doces">
+                <h3>TORTA DE LIMÃO</h3>
+                <p class="price">R$ 14,90</p>
+                <p>Massa sablê com mousse de limão e merengue gratinado.</p>
+                <button class="add-btn" onclick="addCart('Torta de Limão', 14.90, 'img/LIMA.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/sorvete.jpg" alt="Sorvete de Taça"></div>
+            <div class="descricao-doces">
+                <h3>SORVETE DE TAÇA</h3>
+                <p class="price">R$ 36,90</p>
+                <p>2 bolas de sorvete, calda e acompanhamento à escolher. Adicional de Nutella ou chantilly por R$ 3,50.</p>
+                <button class="add-btn" onclick="addCart('Sorvete de Taça', 36.90, 'img/sorvete.jpg', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/redvelmet.png" alt="Red Velvet"></div>
+            <div class="descricao-doces">
+                <h3>RED VELVET</h3>
+                <p class="price">R$ 19,90</p>
+                <p>Massa aveludada com morango e recheio de cream cheese.</p>
+                <button class="add-btn" onclick="addCart('Red Velvet', 19.90, 'img/redvelmet.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
     </div>
-    </section>
-    <section class="container-coffes">
-     <div class="imagens-coffes">
-        <img src="img/we-coffee-cafe-capu_webp.png">
+
+    <!-- SALGADOS -->
+    <div class="start"><h2>Salgados 🥨</h2></div>
+    <div class="cardapio-grid">
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/PAODEQIEJO.jpg" alt="Pão de Queijo"></div>
+            <div class="descricao-doces">
+                <h3>PÃO DE QUEIJO</h3>
+                <p class="price">R$ 4,90</p>
+                <button class="add-btn" onclick="addCart('Pão de Queijo', 4.90, 'img/PAODEQIEJO.jpg', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/QUICHES.jpg" alt="Quiches"></div>
+            <div class="descricao-doces">
+                <h3>QUICHES</h3>
+                <p class="price">R$ 18,90</p>
+                <p>Camarão, Alho Poró ou Lorraine.</p>
+                <button class="add-btn" onclick="addCart('Quiches', 18.90, 'img/QUICHES.jpg', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/pretzel.jpg" alt="Pretzel"></div>
+            <div class="descricao-doces">
+                <h3>PRETZEL</h3>
+                <p class="price">R$ 18,90</p>
+                <p>Pão com formato de nó, crosta dourada e maciez interna.</p>
+                <button class="add-btn" onclick="addCart('Pretzel', 18.90, 'img/pretzel.jpg', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/tortacarne.png" alt="Torta de Carne"></div>
+            <div class="descricao-doces">
+                <h3>TORTA DE CARNE</h3>
+                <p class="price">R$ 19,90</p>
+                <p>Massa semi-folhada com strogonoff de carne, molho bechamel e queijo cremoso.</p>
+                <button class="add-btn" onclick="addCart('Torta de Carne', 19.90, 'img/tortacarne.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/paolinblumneal.png" alt="Sanduíche Linguiça Blumenau"></div>
+            <div class="descricao-doces">
+                <h3>SANDUÍCHE LINGUIÇA BLUMENAU</h3>
+                <p class="price">R$ 39,90</p>
+                <p>Pão ciabata com mussarela, linguiça Blumenau, tomate e molho cremoso.</p>
+                <button class="add-btn" onclick="addCart('Sanduíche Linguiça', 39.90, 'img/paolinblumneal.png', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-coffee-croissant-bacon-01eeed1c.webp" alt="Croissant Bacon"></div>
+            <div class="descricao-sal">
+                <h3>CROISSANT BACON</h3>
+                <p class="price">R$ 29,90</p>
+                <p>Croissant recheado com bacon, maionese, queijo, rúcula e ketchup.</p>
+                <button class="add-btn" onclick="addCart('Croissant Bacon', 29.90, 'img/we-coffee-coffee-croissant-bacon-01eeed1c.webp', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
+        <section class="container-coffes">
+            <div class="imagens-coffes"><img src="img/we-coffee-menu-site_0011_croissant-1-96eadc7d.webp" alt="Croissant"></div>
+            <div class="descricao-sal">
+                <h3>CROISSANT</h3>
+                <p class="price">R$ 19,90</p>
+                <p>Massa aerada amanteigada com crosta crocante e dourada.</p>
+                <button class="add-btn" onclick="addCart('Croissant', 19.90, 'img/we-coffee-menu-site_0011_croissant-1-96eadc7d.webp', this)">+ Adicionar 🛍️</button>
+            </div>
+        </section>
+
     </div>
-    <div class="descricao-coffes">
-        <h3>CAPPUCCINO</h3>
-        <p class="price">R$ 19.90</p>
-        <p>Bebida à base de espresso e leite vaporizado. Cremosa e com toque de canela. 330ml</p>
-    </div>
-</section>
-<section class="container-coffes">
-    <div class="imagens-coffes">
-        <img src="img/we-coffee-cafe-caramelo-macciatto-quente-d5390407.png">
-    </div>
-   <div class="descricao-coffes">
-        <h3>CARAMELO MACCHIATO</h3>
-        <p class="price">R$ 22.90</p>
-        <p>Espresso, leite vaporizado e calda de caramelo. 380ml</p>
-    </div>
-</section>
-<section class="container-coffes">
-    <div class="imagens-coffes">
-        <img src="img/we-coffee-cafe-latte.png">
-    </div>
-    <div class="descricao-coffes">
-        <h3>LATTE</h3>
-        <p class="price">R$ 18.90</p>
-        <p>Espresso e leite vaporizado. Sabor do café mais suave. 380ml</p>
-    </div>
-</section>
-<section class="container-coffes">
-    <div class="imagens-coffes">
-        <img src="img/we-coffee-coffee-espresso-simples.png">
-    </div>
-    <div class="descricao-coffes">
-        <h3>ESPRESSO SIMPLES</h3>
-        <p class="price">R$ 6.90</p>
-        <p>Café espresso potente e encorpado. 40ml</p>
-    </div>
-</section>
-<section class="container-coffes">
-    <div class="imagens-coffes">
-        <img src="img/we-coffee-coffee-espresso-duplo.png">
-    </div>
-    <div class="descricao-coffes">
-        <h3>ESPRESSO DUPLO</h3>
-        <p class="price">R$ 9.90</p>
-        <p>Café espresso potente e encorpado. 80ml</p>
-    </div>
-</section>
-<section class="container-coffes">
-    <div class="imagens-coffes">
-        <img src="img/we-coffee-cafe-hotaveia.png">
-    </div>
-    <div class="descricao-coffes">
-        <h3>HOT LATTE AVEIA</h3>
-        <p class="price">R$ 21.00</p>
-        <p>Bebida quente à base de espresso e leite de aveia vaporizado. 330ml</p>
-    </div>
-</section>
-<section class="container-coffes">
-    <div class="imagens-coffes">
-        <img src="img/we-coffee-cafe-mocha.png">
-    </div>
-    <div class="descricao-coffes">
-        <h3>MOCHA</h3>
-        <p class="price">R$ 21.90</p>
-        <p>Espresso, leite vaporizado, ganache de chocolate e cacau em pó. 330ml</p>
-    </div>
-</section>
-<section class="container-coffes">
-    <div class="imagens-coffes">
-        <img src="img/havaino.png">
-    </div>
-    <div class="descricao-coffes">
-        <h3>CAFÉ HAVAINO</h3>
-        <p class="price">R$ 21.90</p>
-        <p>Café com leite zero e leite de coco e recheado no volta por açucar mascavo. 330ml</p>
-    </div>
-</section>
-</div>
-<div class="start">
-        <h2>Doces 🍰</h2>
-</div>
-<div class="cardapio-grid"> 
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/we-coffee-coffee-pistachio-bun-fc9a1afe.webp">
-        </div>
-        <div class="descricao-doces">
-            <h3>CINNAMON BUN</h3>
-             <p class="price">R$ 17.90</p>
-             <p>Massa soft com canela, com cobertura de caramelo salgado , creme dechocolate com avelã, nozes caramelizadas e crispearls de chocolate.</p>
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/we-coffee-croissant-choco-amendoas-d2202970.webp">
-        </div>
-        <div class="descricao-doces">
-            <h3>CROISSANT DE CHOCOLATE E AMÊNDOAS</h3>
-             <p class="price">R$ 22.90</p>
-             <p>Recheado com creme de chocolate e amêndoas, coberto com amêndoas laminadas.</p>
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/download-removebg-preview.png">
-        </div>
-        <div class="descricao-doces">
-            <h3>BOLO DE CENOURA</h3>
-             <p class="price">R$ 13,90</p>
-             <p>Bolo de cenoura coberto por ganache de chocolate meio amargo.</p>
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/cheesecake.png">
-        </div>
-        <div class="descricao-doces">
-            <h3>CHEESECAKE</h3>
-             <p class="price">R$ 13,90</p>
-             <p>É uma base de biscoito com um recheio suave de queijo assado ou gelado, coberto com geleia de frutas vermelhas.</p>
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/belem.jpg">
-        </div>
-        <div class="descricao-doces">
-            <h3>PASTEL DE BELÉM</h3>
-             <p class="price">R$10,00</p>
-             <p>Massa folhada leve e recheio cremoso caramelizado. </p>
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/beowein.png">
-        </div>
-        <div class="descricao-doces">
-            <h3>BROWNIE FRUTAS VERMELHAS</h3>
-             <p class="price">R$18,00</p>
-             <p>Brownie de chocolate branco com pedaços de chocolate branco, coberto por ganache de chocolate branco, calda de frutas vermelhas, sorvete de creme e leite Ninho®.</p>
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/LIMA.png">
-        </div>
-        <div class="descricao-doces">
-            <h3>TORTA DE LIMÃO</h3>
-             <p class="price">R$14,90</p>
-             <p>Massa sablê com recheio cremoso e cítrico de mousse de limão e cobertura de merengue gratinado </p>
-        </div>
-    </section>
-     <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/sorvete.jpg">
-        </div>
-        <div class="descricao-doces">
-            <h3>SORVENTE DE TAÇA</h3>
-             <p class="price">R$36,90</p>
-             <p>2 bolas de sorvete, calda (morango, caramelo ou chocolate) e acompanhamento a escolher: Negresco, Ovomaltine ou amendoim. Adicional de Nutella, Dulce de Leche argentino ou chantilly ao valor de R$ 3,50.</p>
-        </div>
-    </section> 
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/redvelmet.png">
-        </div>
-        <div class="descricao-doces">
-            <h3>RED VELVET</h3>
-             <p class="price">R$19,90</p>
-             <p>Massa aveludada com morango e recheio de cream cheese.</p>
-        </div>
-    </section>
-</div>
-    <div class="start">
-        <h2>Salgados 🥨</h2>
-</div>
-<div class="cardapio-grid">
-<section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/PAODEQIEJO.jpg">
-        </div>
-        <div class="descricao-doces">
-            <h3>PÃO DE QUEIJO </h3>
-             <p class="price">R$4,90</p>             
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/QUICHES.jpg">
-        </div>
-        <div class="descricao-doces">
-            <h3>QUICHES </h3>
-             <p class="price">R$18,90</p>
-             <P>Quiches (Camarão, Alho Poró, Lorraine)</P>           
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/pretzel.jpg">
-        </div>
-        <div class="descricao-doces">
-            <h3>PRETZEL</h3>
-             <p class="price">R$18,90</p>
-             <P>Pão tem formato de nó, crosta dourada e maciez interna</P>           
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/tortacarne.png">
-        </div>
-        <div class="descricao-doces">
-            <h3>TORTA DE CARNE</h3>
-             <p class="price">R$19,90</p>
-             <P>Massa semi-folhada com recheio de strogonoff de carne, molho bechamel e queijo cremoso.</P>           
-        </div>
-    </section>
-    <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/paolinblumneal.png">
-        </div>
-        <div class="descricao-doces">
-            <h3>Sanduíche linguiça Blumenau</h3>
-             <p class="price">R$39,90</p>
-             <P>Pão ciabata ou baguete francesa com mussarela, linguiça Blumenau, tomate e molho cremoso.</P>           
-        </div>
-    </section>
- <section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/we-coffee-coffee-croissant-bacon-01eeed1c.webp">
-        </div>
-        <div class="descricao-sal">
-            <h3>CROISSANT BACON</h3>
-             <p class="price">R$29,90</p>
-             <p>Croissant, recheado com bacon, maionese, queijo, rúcula e ketchup.</p>
-        </div>
-    </section>
-<section class="container-coffes">
-        <div class="imagens-coffes">
-            <img src="img/we-coffee-menu-site_0011_croissant-1-96eadc7d.webp">
-        </div>
-        <div class="descricao-sal">
-            <h3>CROISSANT </h3>
-             <p class="price">R$19,90</p>
-             <p>Massa aerada amanteigada com crosta crocante e dourada.</p>
-        </div>
-    </section>       
-</div>
 
 </main>
-<footer >
-        <p> This cover has been designed using resources from Flaticon.com em 2025</p> 
-         <div class="contatos">
-        <p class="lado">
-            @shoujo.coffee
-            <img src="./img/instagram.png" class="img">
-        </p>
 
-        <p class="lado">
-            +55 47 99874-2356
-            <img src="./img/social.png" class="img">
-        </p>
+<footer>
+    <p>This cover has been designed using resources from Flaticon.com em 2025</p>
+    <div class="contatos">
+        <p class="lado">@shoujo.coffee <img src="./img/instagram.png" class="img"></p>
+        <p class="lado">+55 47 99874-2356 <img src="./img/social.png" class="img"></p>
     </div>
-</footer> 
+</footer>
+
+<script>
+    function atualizarBadge() {
+        const cart = JSON.parse(localStorage.getItem('shoujoCart') || '{}');
+        const total = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+        const badge = document.getElementById('cart-badge');
+        if (!badge) return;
+        badge.textContent = total;
+        badge.style.display = total > 0 ? 'inline' : 'none';
+    }
+
+    function addCart(nome, preco, img, btn) {
+        let cart = JSON.parse(localStorage.getItem('shoujoCart') || '{}');
+        if (cart[nome]) {
+            cart[nome].qty++;
+        } else {
+            cart[nome] = { nome, preco, img, qty: 1 };
+        }
+        localStorage.setItem('shoujoCart', JSON.stringify(cart));
+        atualizarBadge();
+
+        // feedback no botão
+        btn.textContent = '✓ Adicionado!';
+        btn.classList.add('adicionado');
+        setTimeout(() => {
+            btn.textContent = '+ Adicionar 🛍️';
+            btn.classList.remove('adicionado');
+        }, 1500);
+
+        // toast
+        const toast = document.getElementById('toast');
+        toast.textContent = '🌸 ' + nome + ' adicionado!';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    atualizarBadge();
+</script>
+
+<div class="toast" id="toast"></div>
+
 </body>
 </html>

@@ -1,84 +1,205 @@
-*{
-    font-family: Arial, Helvetica, sans-serif;
+* {
+    font-family: 'Fredoka', Arial, sans-serif;
+    box-sizing: border-box;
     width: auto;
     height: auto;
 }
-body{
+body, main, p, h1, h2, h3, h4, li, a, button {
+    font-family: 'Comic Sans MS', cursive;
+}
+
+body {
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
     padding: 0;
+    background-color: #fff9f5;
 }
 
-main{
+main {
     background-color: antiquewhite;
     width: auto;
     margin: auto;
     box-shadow: 3px 3px 5px burlywood;
+}
+#menu > li:first-child img {
+    width: 36px !important;
+    height: 36px !important;
+}
+/* ── MENU ── */
+#menu {
+    margin: 0;
+    overflow: hidden;
+    list-style: none;
+    background-color: rgb(255, 216, 156);
+    padding: 14px 24px;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: sticky;   /* fica fixo no topo ao rolar */
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(100, 74, 7, 0.12);
+}
+
+#menu img {
+    width: 36px;
+    height: auto;
+    margin-right: 8px;
+}
+
+#menu li a {
+    text-decoration: none;
+    color: rgb(27, 26, 26);
+    padding: 6px 14px;
+    border-radius: 20px;           /* pílula suave */
+    transition: background 0.2s, color 0.2s;
+}
+
+#menu li a:hover {
+    background-color: #f8bbd0;     /* rosa ao passar o mouse */
+    color: #43332D;
+}
+
+#menu li a.active {
+    color: #fff;
+    font-weight: 700;
+    background-color: #e91e63;     /* rosa forte no item ativo */
+    border-bottom: none;           /* remove o underline antigo */
+    border-radius: 20px;
 }
 #menu {
     margin: 0;
     overflow: hidden;
     list-style: none;
     background-color: rgb(255, 216, 156);
-     padding: 20px;
-    font-size: 1.5em;
-    align-items: center;
+    padding: 14px 24px;
+    font-size: 1.2em;
     display: flex;
     align-items: center;
-    
-    
-}
-#menu img {
-    width: 45px;       
-    height: auto;     
-    margin-right: 15px;   
+    gap: 4px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(100, 74, 7, 0.12);
+    flex-wrap: nowrap;          /* NUNCA quebra linha */
 }
 
+/* logo — primeiro item */
+#menu li:first-child {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;             /* não encolhe */
+}
+
+#menu li:first-child img {
+    width: 36px !important;
+    height: 36px !important;
+    margin-right: 0;
+}
+
+/* links normais */
 #menu li a {
     text-decoration: none;
     color: rgb(27, 26, 26);
-    margin: 0 20px;
-    
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+#menu li a:hover {
+    background-color: #f8bbd0;
+    color: #43332D;
 }
 
 #menu li a.active {
-    color: brown;
-    font-weight: bold;
-    border-bottom: 2px solid brown; 
+    color: #fff;
+    font-weight: 700;
+    background-color: #e91e63;
+    border-radius: 20px;
+    border-bottom: none;
 }
+
+/* COMPRAS — empurra para a direita */
 #menu .right {
-    margin-left: auto;
+    margin-left: auto;          /* empurra para a borda direita */
+    flex-shrink: 0;
 }
 
+#menu .right a {
+    background-color: #e91e63;
+    color: #fff !important;
+    border-radius: 20px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
 
+#menu .right a img {
+    width: 18px !important;
+    height: 18px !important;
+}
 
+#menu .right a:hover {
+    background-color: #c2185b;
+}
+/* ── BOTÕES ADD CARRINHO ── */
+.add-btn {
+    background-color: #e91e63;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s, transform 0.1s;
+}
 
+.add-btn:hover {
+    background-color: #c2185b;
+    transform: scale(1.03);
+}
 footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 16px 40px;
     background-color: #594100;
     color: #fff;
     margin-top: 40px;
-    font-size: 20px;
+    font-size: 14px;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .contatos {
     display: flex;
-    gap: 30px; 
+    gap: 20px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 footer .lado {
     display: flex;
     align-items: center;
     gap: 8px;
+    font-size: 14px;
 }
 
-footer .img {
-    width: 22px;
+/* esse é o que resolve o problema — limita TODOS os ícones do footer */
+footer img {
+    width: 22px !important;
+    height: 22px !important;
+    object-fit: contain;
+}
+img {
+    max-width: 100%;
     height: auto;
+    display: block;
 }
-

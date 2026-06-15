@@ -20,7 +20,77 @@
     </li>
    </ul>
     <article>
-        
+        <main>
+    <h2 style="padding: 20px; font-family: 'Fredoka', sans-serif;">🛍️ Minhas Compras</h2>
+    <div id="cart-lista" style="padding: 20px;"></div>
+    <div id="cart-total" style="padding: 20px; font-size: 18px; font-weight: bold;"></div>
+    <button onclick="finalizarPedido()" 
+        style="margin: 0 20px 30px; padding: 12px 30px; background:#e91e63; color:#fff; border:none; border-radius:12px; font-size:16px; font-family:'Fredoka',sans-serif; cursor:pointer;">
+        Finalizar Pedido 🌸
+    </button>
+</main>
+
+<script>
+function renderCart() {
+    const cart = JSON.parse(localStorage.getItem('shoujoCart') || '{}');
+    const lista = document.getElementById('cart-lista');
+    const totalEl = document.getElementById('cart-total');
+    const items = Object.values(cart);
+
+    if (!items.length) {
+        lista.innerHTML = '<p style="color:#999">Seu carrinho está vazio 🌸</p>';
+        totalEl.innerHTML = '';
+        return;
+    }
+
+    lista.innerHTML = items.map(i => `
+        <div style="display:flex; align-items:center; gap:16px; background:#fff; 
+                    border:1.5px solid #f0e0d0; border-radius:14px; padding:12px; margin-bottom:10px;">
+            <img src="${i.img}" style="width:60px; height:60px; object-fit:cover; border-radius:10px;">
+            <div style="flex:1">
+                <div style="font-weight:700; font-size:15px;">${i.nome}</div>
+                <div style="color:#e91e63; font-weight:600;">R$ ${(i.preco * i.qty).toFixed(2).replace('.', ',')}</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <button onclick="changeQty('${i.nome}', -1)" 
+                    style="width:28px;height:28px;border-radius:50%;border:1.5px solid #e91e63;background:transparent;color:#e91e63;font-size:18px;cursor:pointer;">−</button>
+                <span style="font-weight:700">${i.qty}</span>
+                <button onclick="changeQty('${i.nome}', 1)"
+                    style="width:28px;height:28px;border-radius:50%;border:1.5px solid #e91e63;background:transparent;color:#e91e63;font-size:18px;cursor:pointer;">+</button>
+                <button onclick="removeItem('${i.nome}')"
+                    style="background:none;border:none;cursor:pointer;font-size:18px;color:#ccc;">🗑️</button>
+            </div>
+        </div>
+    `).join('');
+
+    const total = items.reduce((s, i) => s + i.preco * i.qty, 0);
+    totalEl.innerHTML = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+}
+
+function changeQty(nome, d) {
+    let cart = JSON.parse(localStorage.getItem('shoujoCart') || '{}');
+    if (!cart[nome]) return;
+    cart[nome].qty += d;
+    if (cart[nome].qty <= 0) delete cart[nome];
+    localStorage.setItem('shoujoCart', JSON.stringify(cart));
+    renderCart();
+}
+
+function removeItem(nome) {
+    let cart = JSON.parse(localStorage.getItem('shoujoCart') || '{}');
+    delete cart[nome];
+    localStorage.setItem('shoujoCart', JSON.stringify(cart));
+    renderCart();
+}
+
+function finalizarPedido() {
+    localStorage.removeItem('shoujoCart');
+    alert('✅ Pedido enviado! Obrigada por escolher a Shoujo Coffee 🌸');
+    renderCart();
+}
+
+renderCart();
+</script>
     </article>
     
 </main>
